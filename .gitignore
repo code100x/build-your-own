@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+build/
+**/dist/
+**/build/
+
+# Log files
+*.log
+
+# Dependency directories
+.pnp/
+.pnp.js
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE/editor directories
+.vscode/
+.idea/
+*.swp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Prisma
+.prisma/
+
+# Jest
+coverage/
+*.test.ts
+*.test.js
+
+# Typescript
+*.tsbuildinfo
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Yarn
+.yarn/
+
+# Turbo
+.turbo/
+
+# Coverage reports
+*.lcov
