@@ -1,4 +1,4 @@
-import { Button } from "../ui/button";
+import { Button } from "@repo/ui/components/ui/button";
 import { useBookStore } from '@/store/booksStore';
 
 const Main = () => {
