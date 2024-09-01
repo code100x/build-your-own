@@ -1,0 +1,23 @@
+{
+  "name": "@repo/db",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "db:generate": "npx prisma generate",
+    "db:push": "npx prisma db push --skip-generate"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0"
+  }
+}
