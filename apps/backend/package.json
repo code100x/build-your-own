@@ -1,0 +1,52 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend API",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "prepare": "prisma generate",
+    "turbo": "turbo run build"
+  },
+  "keywords": [
+    "express",
+    "prisma",
+    "passport",
+    "oauth",
+    "backend"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@jest/types": "^29.6.3",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^22.5.1",
+    "dotenv": "^16.4.5",
+    "helmet": "^7.1.0",
+    "jest": "^29.7.0",
+    "morgan": "^1.10.0",
+    "prisma": "^5.19.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "turbo": "^2.1.1",
+    "typescript": "^5.5.4",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "express": "^4.19.2",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.12.0"
+  }
+}
