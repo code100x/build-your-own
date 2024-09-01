@@ -48,5 +48,36 @@ The goal of this project is to create a robust platform where users can build va
 - **Database:** Prisma ORM for database interactions (PostgreSQL as the database).
 - **Authentication:** Passport.js with Google and Github OAuth for authentication.
 - **Middleware:** Include common middleware for logging, error handling, and security.
-- **Testing:** Use Mocha and Chai for backend testing.
+- **Testing:** Use Jest for backend testing.
 - **Build and Dev:** Integrated with Turborepo for streamlined development.
+
+## Setup and Configuration
+
+### 1. TypeScript Configuration
+
+- **Request:** Add TypeScript configurations to both frontend and backend projects to enable strong typing and better developer experience.
+  - Configure TypeScript in the root of the monorepo for shared settings.
+  - Specific `tsconfig.json` files for React and Express apps for tailored configurations.
+
+### 2. ESLint and Prettier Configuration
+
+- **Request:** Add Eslint and Prettier as a common package to enable strong linting and better developer experience.
+  - Specific eslint and prettier config files for React and Express apps for tailored configurations .
+
+### 3. Tailwind CSS Configuration
+
+- **Request:** Set up Tailwind CSS configuration as a separate package to maintain a consistent design system across projects.
+  - Centralize `tailwind.config.js` in a shared package within the monorepo.
+  - Ensure that both frontend apps and UI components can import and utilize the same Tailwind setup.
+
+### 4. ShadCN UI Library
+
+- **Request:** Create a separate package for ShadCN UI components to promote reuse and consistency.
+  - Develop shared React components with ShadCN, stored in a `ui` package.
+  - Ensure these components are easily importable into any React application within the monorepo.
+
+### 5. Database Setup
+
+- **Request:** Configure a separate package for database interactions using Prisma.
+  - Define the database schema and migrations within a dedicated `db` package.
+  - Centralize Prisma configurations to streamline database setup and ensure consistent database access across different services.
