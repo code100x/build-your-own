@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "frontend-react",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,16 +10,25 @@
     "lint": "eslint src/"
   },
   "dependencies": {
+    "@repo/ui": "workspace:*",
+    "@tanstack/react-query": "^5.53.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@repo/ui": "*"
+    "react-router-dom": "^6.26.1",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "@types/react": "^18.2.62",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "autoprefixer": "^10.4.20",
+    "jest": "^29.7.0",
+    "postcss": "^8.4.42",
+    "tailwindcss": "^3.4.10",
     "typescript": "^5.3.3",
     "vite": "^5.1.4"
   }

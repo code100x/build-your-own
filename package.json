@@ -3,6 +3,8 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
+    "dev:frontend": "turbo run dev --filter=frontend-react",
+    "dev:backend": "turbo run dev --filter=express-api",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
@@ -16,7 +18,7 @@
   "engines": {
     "node": ">=18"
   },
-  "name": "kitchen-sink",
+  "name": "build-your-own",
   "packageManager": "npm@10.8.1",
   "workspaces": [
     "apps/*",
