@@ -18,9 +18,9 @@
     "preset": "@repo/jest-presets/node"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/jest-presets": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "*",
+    "@repo/jest-presets": "*",
+    "@repo/typescript-config": "*",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "jest": "^29.7.0",
