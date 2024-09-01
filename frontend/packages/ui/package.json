@@ -1,0 +1,9 @@
+{
+    "name": "ui",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "shadcn": "^1.0.0",
+        "react": "^18.0.0"
+    }
+}

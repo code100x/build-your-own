@@ -1,0 +1,27 @@
+{
+    "name": "build-your-own",
+    "private": true,
+    "version": "1.0.0",
+    "packageManager": "npm@10.8.2",
+    "workspaces": [
+        "frontend/*",
+        "backend/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "dev": "turbo run dev --parallel",
+        "build": "turbo run build",
+        "test": "turbo run test"
+    },
+    "devDependencies": {
+        "turbo": "^2.1.1"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.19.0",
+        "express": "^4.19.2",
+        "passport": "^0.7.0",
+        "passport-github": "^1.1.0",
+        "passport-google-oauth20": "^2.0.0",
+        "prisma": "^5.19.0"
+    }
+}
