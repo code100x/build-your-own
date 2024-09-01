@@ -1,81 +1,83 @@
-# Turborepo starter
+# Build Your Own X
 
-This is an official starter Turborepo.
+## Overview
 
-## Using this example
+The goal of this project is to create a robust platform where users can build various "Build Your Own X" projects using multiple programming languages.
 
-Run the following command:
+## Key Features
 
-```sh
-npx create-turbo@latest
-```
+1. **Documentation Templates**
 
-## What's inside?
+   - Provide detailed, language-specific documentation templates for each "Build Your Own X" project.
+   - Support multiple languages such as Python, JavaScript, Go, Ruby, and more.
 
-This Turborepo includes the following packages/apps:
+2. **Private Git Repositories**
 
-### Apps and Packages
+   - Host projects in private Git repositories to ensure secure and isolated environments.
+   - Repositories named with unique project and user identifiers (e.g., `project-<project-id>-user-<user-id>`).
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+3. **User Workflow**
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+   - Users clone their assigned repositories to start working on projects.
+   - Make incremental commits as they progress, following the documentation steps.
+   - Push changes to the remote repository regularly to track progress.
 
-### Utilities
+4. **Automated Testing & Real-time Feedback**
+   - Run automated tests after every commit to validate progress.
+   - Provide real-time feedback using WebSockets or polling to indicate pass/fail status of each step.
+   - Use visual indicators for easy tracking of progress and status.
 
-This Turborepo has some additional tools already setup for you:
+## Architecture
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### 1. Monorepo Structure with Turborepo
 
-### Build
+- **Monorepo Tooling:** Use **Turborepo** to manage the monorepo, which will host both frontend and backend projects. This setup will facilitate shared configurations, faster build times, and easier dependency management.
 
-To build all apps and packages, run the following command:
+### 2. Frontend: React Application
 
-```
-cd my-turborepo
-pnpm build
-```
+- **Framework:** React with Vite
+- **State Management:** Zustand and React Query for data fetching and state management.
+- **UI Library:** Tailwind CSS + ShadCN for styling components.
+- **Routing:** React Router for routing needs.
+- **Testing:** Jest and React Testing Library for unit and integration tests.
+- **Build and Dev:** Use Turborepo to run build and development tasks efficiently.
 
-### Develop
+### 3. Backend: Express Application
 
-To develop all apps and packages, run the following command:
+- **Framework:** Express.js for handling HTTP requests and routing.
+- **Database:** Prisma ORM for database interactions (PostgreSQL as the database).
+- **Authentication:** Passport.js with Google and Github OAuth for authentication.
+- **Middleware:** Include common middleware for logging, error handling, and security.
+- **Testing:** Use Jest for backend testing.
+- **Build and Dev:** Integrated with Turborepo for streamlined development.
 
-```
-cd my-turborepo
-pnpm dev
-```
+## Setup and Configuration
 
-### Remote Caching
+### 1. TypeScript Configuration
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- **Request:** Add TypeScript configurations to both frontend and backend projects to enable strong typing and better developer experience.
+  - Configure TypeScript in the root of the monorepo for shared settings.
+  - Specific `tsconfig.json` files for React and Express apps for tailored configurations.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+### 2. ESLint and Prettier Configuration
 
-```
-cd my-turborepo
-npx turbo login
-```
+- **Request:** Add Eslint and Prettier as a common package to enable strong linting and better developer experience.
+  - Specific eslint and prettier config files for React and Express apps for tailored configurations .
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 3. Tailwind CSS Configuration
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- **Request:** Set up Tailwind CSS configuration as a separate package to maintain a consistent design system across projects.
+  - Centralize `tailwind.config.js` in a shared package within the monorepo.
+  - Ensure that both frontend apps and UI components can import and utilize the same Tailwind setup.
 
-```
-npx turbo link
-```
+### 4. ShadCN UI Library
 
-## Useful Links
+- **Request:** Create a separate package for ShadCN UI components to promote reuse and consistency.
+  - Develop shared React components with ShadCN, stored in a `ui` package.
+  - Ensure these components are easily importable into any React application within the monorepo.
 
-Learn more about the power of Turborepo:
+### 5. Database Setup
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- **Request:** Configure a separate package for database interactions using Prisma.
+  - Define the database schema and migrations within a dedicated `db` package.
+  - Centralize Prisma configurations to streamline database setup and ensure consistent database access across different services.
