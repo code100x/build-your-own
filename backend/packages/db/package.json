@@ -1,0 +1,9 @@
+{
+    "name": "db",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "prisma": "^4.0.0",
+        "pg": "^8.7.0"
+    }
+}
