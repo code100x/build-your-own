@@ -26,7 +26,6 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@repo/db": "*",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@babel/preset-typescript": "^7.24.7",
