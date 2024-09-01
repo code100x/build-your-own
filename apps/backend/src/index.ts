@@ -1,9 +1,15 @@
 import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import passport from "passport";
-const LocalStrategy = require("passport-local").Strategy;
+import { Strategy as LocalStrategy } from 'passport-local';
 const session = require("express-session");
+import ErrorHandler from "./middlewares/ErrorHandler";
 import dotenv from "dotenv";
+import morgan from 'morgan';
+import cors from 'cors';
+import helmet from 'helmet';
+import Logger from "./middlewares/Logger";
+import limiter from "./middlewares/Limiter";
 dotenv.config();
 
 const prisma = new PrismaClient();
@@ -11,6 +17,19 @@ const prisma = new PrismaClient();
 const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
+
+// ERROR HANDLER MIDDLEWARE (Last middleware to use)
+app.use(ErrorHandler);
+
+// logger middleware
+app.use(Logger)
+
+
+app.use(morgan("common")) //just for logs
+app.use(helmet());
+app.use(cors());
+app.use(limiter)
+app.use(express.json());
 
 // Use session middleware
 app.use(
