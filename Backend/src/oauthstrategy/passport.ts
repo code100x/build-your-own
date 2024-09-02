@@ -19,8 +19,11 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/google/callback",
       passReqToCallback: true,
     },
+    
+    
 
-    async function ({request, accessToken, refreshToken, profile, done}: any) {
+    async function (request: any, accessToken: any, refreshToken: any, profile: types, done: (arg0: { id: string; name: string; email: string; password: string | null; }) => any) {
+      
       console.log(profile);
 
       const { email, given_name }: types = profile;

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "types": ["node", "@types/passport-google-oauth20"],
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
