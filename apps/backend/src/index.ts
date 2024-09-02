@@ -4,14 +4,15 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import session from "express-session";
 import ErrorHandler from "./middlewares/ErrorHandler";
-import dotenv from "dotenv";
+import {configDotenv} from "dotenv";
 import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 import Logger from "./middlewares/Logger";
 import limiter from "./middlewares/Limiter";
-dotenv.config();
-
+import cookieParser from "cookie-parser"
+import { userRouter } from "./routes/userRoutes";
+configDotenv()
 const prisma = new PrismaClient();
 
 const app = express();
@@ -31,17 +32,21 @@ app.use(limiter);
 app.use(express.json());
 
 // Use session middleware
+app.use(cookieParser())
+
 app.use(
   session({
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
+    cookie:{secure:false}
   })
 );
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use("/user",userRouter)
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome");
 });
@@ -69,14 +74,23 @@ passport.deserializeUser((id: any, done: any) => {
   done(null, user);
 });
 
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/profile",
-    failureRedirect: "/login",
-    failureFlash: true,
-  })
-);
+// app.post(
+//   "/login",
+//   passport.authenticate("local", {
+//     successRedirect: "/profile",
+//     failureRedirect: "/login",
+//     failureFlash: true,
+//   })
+// );
+
+app.get("/auth/google/callback",(req,res)=>{
+  res.send("google successfull")
+})
+
+
+app.get("/auth/github/callback",(req,res)=>{
+  res.send("github successful")
+})
 app.get("/profile", (req: any, res: any) => {
   if (req.isAuthenticated()) {
     res.send("Welcome to your profile");
