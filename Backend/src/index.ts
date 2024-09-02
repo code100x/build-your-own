@@ -1,14 +1,39 @@
-import express from "express"
-const app=express()
-import { configDotenv } from "dotenv"
-import { userRouter } from "./routes/userRoute"
-configDotenv()
+import "dotenv/config"
+import express from "express";
+import session from "express-session";
+const app = express();
+import passport from "passport";
+import { oauthRouter, userRouter } from "./routes/userRoute";
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET
+      ? process.env.SESSION_SECRET
+      : "SESSIONSECRET",
+   resave:false,
+   saveUninitialized:false
+  })
+);
 
-app.use(express.json())
-app.use(userRouter)
 
-const PORT=process.env.PORT? process.env.PORT : 3000
-app.listen(PORT,()=>{
-    console.log(`server is running at port ${PORT}`);
-    
-})
+app.use(passport.initialize());
+console.log("initialzised");
+
+app.use(passport.session());
+app.use(express.json());
+
+
+
+
+
+app.use("/api/user",userRouter)
+app.use("/api/oauth",oauthRouter);
+
+
+
+
+
+
+const PORT = process.env.PORT ? process.env.PORT : 3000;
+app.listen(PORT, () => {
+  console.log(`server is running at port ${PORT}`);
+});

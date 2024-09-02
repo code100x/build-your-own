@@ -3,6 +3,7 @@ import { Request,Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { createToken } from "../middlewares/authenticationUser";
 const prisma=new PrismaClient()
+import passport from "passport"
 
 export const signup=async (req:Request,res:Response)=>{
     try {
@@ -83,3 +84,4 @@ export const login=async(req:Request,res:Response)=>{
     }
 
 }
+
