@@ -9,11 +9,9 @@ configDotenv()
 
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
-console.log(client_id);
 
 
-const git_client_id=process.env.GIT_CLIENT_ID
-const git_client_secret=process.env.GIT_CLIENT_SECRET
+
 interface types {
   email: string;
   given_name: string;
@@ -34,11 +32,11 @@ passport.use(
 
     async function (request: any, accessToken: any, refreshToken: any, profile: types, done: (arg0: { id: string; name: string; email: string; password: string | null; }) => any) {
       
-      console.log(profile,"profile here");
 
       const { email, given_name }: types = profile;
 
-      console.log(email,"email here");
+      
+      
       
       
 

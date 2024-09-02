@@ -74,14 +74,14 @@ passport.deserializeUser((id: any, done: any) => {
   done(null, user);
 });
 
-// app.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     successRedirect: "/profile",
-//     failureRedirect: "/login",
-//     failureFlash: true,
-//   })
-// );
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/profile",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
 
 app.get("/auth/google/callback",(req,res)=>{
   res.send("google successfull")

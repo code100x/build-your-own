@@ -13,7 +13,6 @@ interface types {
 const git_client_id = process.env.GIT_CLIENT_ID;
 const git_client_secret = process.env.GIT_CLIENT_SECRET;
 
-console.log(git_client_id);
 
 passport.use(new GithubStrategy({
     clientID: git_client_id,
