@@ -3,9 +3,13 @@ import passport from "passport";
 const prisma = new PrismaClient();
 
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
+var GithubStrategy=require("passport-github2").Strategy
 
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
+
+const git_client_id=process.env.GIT_CLIENT_ID
+const git_client_secret=process.env.GIT_CLIENT_SECRET
 interface types {
   email: string;
   given_name: string;
@@ -19,6 +23,7 @@ passport.use(
       callbackURL: "http://localhost:3000/auth/google/callback",
       passReqToCallback: true,
     },
+
     
     
 
@@ -27,11 +32,7 @@ passport.use(
       console.log(profile);
 
       const { email, given_name }: types = profile;
-      const user = JSON.stringify({
-        name: given_name,
-        email: email,
-      });
-      console.log(user);
+      
 
       const upsertUser = await prisma.user.upsert({
         where: {
@@ -48,7 +49,12 @@ passport.use(
 
       return done(upsertUser);
     }
-  )
+  ), 
+
+  
 );
+
+
+
 
 module.exports = passport;
