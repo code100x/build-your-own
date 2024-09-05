@@ -12,7 +12,6 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
@@ -23,6 +22,7 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@repo/ui": "*",
     "@babel/preset-typescript": "^7.24.7",
     "@eslint/js": "^9.9.0",
     "@types/jest": "^29.5.12",
