@@ -12,7 +12,7 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
+    "@testing-library/react": "^16.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
@@ -21,10 +21,11 @@
     "zustand": "^4.5.5"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@babel/preset-typescript": "^7.24.7",
     "@eslint/js": "^9.9.0",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@repo/ui": "*",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.1",
     "@types/react": "^18.3.3",
