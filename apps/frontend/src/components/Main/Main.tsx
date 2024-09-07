@@ -1,5 +1,7 @@
 import { Button } from "@repo/ui/components/ui/button";
 import { useBookStore } from '@/store/booksStore';
+import ProfileDropdown from "../ProfileDropDown";
+
 
 const Main = () => {
     const amount = useBookStore(state => state.amount)
@@ -14,7 +16,7 @@ const Main = () => {
                     className='mt-5 bg-slate-500 p-4'
                     onClick={() => updateAmount(10)}
                 > Update Amount </Button>
-
+                <ProfileDropdown /> 
             </div>
         </>
     )
