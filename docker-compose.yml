@@ -1,0 +1,35 @@
+  version: '3.8'
+
+  services:
+    app:
+      build: .
+      container_name: build-your-own
+      environment:
+        - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      ports:
+        - '3000:3000'
+        - '5173:5173'
+      depends_on:
+        db:
+          condition: service_healthy
+
+    db:
+      image: postgres:9.6
+      container_name: db
+      restart: always
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: build-your-own
+      ports:
+        - '5432:5432'
+      volumes:
+        - postgres-data:/var/lib/postgresql/data
+      healthcheck:
+        test: [ 'CMD-SHELL', 'pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}' ]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+
+  volumes:
+    postgres-data:
