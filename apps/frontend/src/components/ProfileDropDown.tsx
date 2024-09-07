@@ -1,28 +1,26 @@
 import { LogOut } from "lucide-react";
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@repo/ui";
-import { Avatar } from "@repo/ui";
 
 const ProfileDropdown = () => {
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-gradient-to-b from-blue-400 to-blue-700">
-          <Avatar color="white" className="size-4" />
-        </div>
+        <Button variant="default">Open</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="z-[99999] m-2 min-w-4 bg-neutral-100 dark:bg-neutral-900 cursor-pointer">
-        <DropdownMenuItem onClick={() => {}}>
-          <span
-            className={`flex items-center gap-2 text-base transition-all duration-300 hover:text-red-500`}
-          >
-            <LogOut className="size-4" />
-            Logout
-          </span>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <LogOut className="mr-2 h-4 w-4" />
+          <span>Log out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
