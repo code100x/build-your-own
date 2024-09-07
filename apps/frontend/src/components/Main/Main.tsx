@@ -1,5 +1,5 @@
-import { Button } from "@repo/ui/components/ui/button";
-import { useBookStore } from '@/store/booksStore';
+import { Button } from "@repo/ui";
+import { useBookStore } from "@/store/booksStore";
 import ProfileDropdown from "../ProfileDropDown";
 
 

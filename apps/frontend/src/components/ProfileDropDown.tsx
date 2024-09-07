@@ -4,8 +4,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@repo/ui/components/ui/dropdown-menu";
-import { Avatar } from "@repo/ui/components/ui/avatar";
+} from "@repo/ui";
+import { Avatar } from "@repo/ui";
 
 const ProfileDropdown = () => {
   return (

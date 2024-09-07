@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@testing-library/react": "^16.0.1",
+    "@repo/ui": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",

@@ -38,13 +38,10 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "exports": {
+    ".": "./src/components/index.ts",
     "./globals.css": "./src/globals.css",
     "./postcss.config": "./postcss.config.mjs",
     "./tailwind.config": "./tailwind.config.ts",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": [
-      "./src/components/*.tsx",
-      "./src/components/*.ts"
-    ]
+    "./lib/*": "./src/lib/*.ts"
   }
 }

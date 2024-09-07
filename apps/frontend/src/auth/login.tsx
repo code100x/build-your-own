@@ -1,4 +1,4 @@
-import { Button } from "@repo/ui/components/ui/button";
+import { Button } from "@repo/ui";
 import { FaGithub } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 
