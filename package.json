@@ -5,7 +5,10 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install",
+    "dev:docker": "npm run prisma:docker && npm run dev",
+    "prisma:docker": "cd packages/db && npx prisma migrate dev --skip-seed"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
