@@ -1,6 +1,6 @@
 import express from "express"
-const passport=require("../oauthStrategy/google-oauth")
-const gitPassport=require("../oauthStrategy/github-oauth")
+import passport from "../oauthStrategy/google-oauth"
+import gitPassport from "../oauthStrategy/github-oauth"
 export const userRouter=express.Router()
 
 userRouter.get("/success",(req,res)=>{
@@ -18,6 +18,8 @@ userRouter.get(
      
       failureRedirect: "/auth/google/failure",
     }),(req,res)=>{
+      console.log("reached here");
+      
       res.redirect("/")
     }
   );

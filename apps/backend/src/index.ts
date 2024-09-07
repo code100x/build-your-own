@@ -1,52 +1,45 @@
+import 'dotenv/config';
+
+import { prisma } from "@repo/db";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import express, { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import session from "express-session";
+import helmet from "helmet";
+import morgan from "morgan";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import session from "express-session";
 import ErrorHandler from "./middlewares/ErrorHandler";
-import {configDotenv} from "dotenv";
-import morgan from "morgan";
-import cors from "cors";
-import helmet from "helmet";
-import Logger from "./middlewares/Logger";
 import limiter from "./middlewares/Limiter";
-import cookieParser from "cookie-parser"
+import Logger from "./middlewares/Logger";
 import { userRouter } from "./routes/userRoutes";
-configDotenv()
-const prisma = new PrismaClient();
 
 const app = express();
-app.use(express.json());
 const port = process.env.PORT || 3000;
 
-// ERROR HANDLER MIDDLEWARE (Last middleware to use)
+app.use(express.json());
 app.use(ErrorHandler);
-
-// logger middleware
 app.use(Logger);
-
-app.use(morgan("common")); //just for logs
+app.use(morgan("common"));
 app.use(helmet());
 app.use(cors());
 app.use(limiter);
 app.use(express.json());
-
-// Use session middleware
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use(
   session({
     secret: "your-secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie:{secure:false}
+    cookie: { secure: false },
   })
 );
 // Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/user",userRouter)
+app.use("/", userRouter);
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome");
 });
@@ -83,14 +76,6 @@ app.post(
   })
 );
 
-app.get("/auth/google/callback",(req,res)=>{
-  res.send("google successfull")
-})
-
-
-app.get("/auth/github/callback",(req,res)=>{
-  res.send("github successful")
-})
 app.get("/profile", (req: any, res: any) => {
   if (req.isAuthenticated()) {
     res.send("Welcome to your profile");
@@ -102,7 +87,6 @@ app.get("/login", (req, res) => {
   res.send("Login page");
 });
 
-// Create a blog
 app.post("/post", async (req: Request, res: Response) => {
   try {
     const { title, content } = req.body;
@@ -134,7 +118,6 @@ app.post("/post", async (req: Request, res: Response) => {
   }
 });
 
-// Get all blogs
 app.get("/posts", async (req: Request, res: Response) => {
   try {
     const blogs = await prisma.post.findMany();

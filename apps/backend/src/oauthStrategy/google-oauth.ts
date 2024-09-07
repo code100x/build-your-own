@@ -1,16 +1,12 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@repo/db";
 import passport from "passport";
-const prisma = new PrismaClient();
-import { configDotenv } from "dotenv";
-
-var GoogleStrategy = require("passport-google-oauth2").Strategy;
-var GithubStrategy=require("passport-github2").Strategy
-configDotenv()
-
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
+import {
+  Strategy as GoogleStrategy
+} from "passport-google-oauth2";
 
 
+const client_id = process.env.CLIENT_ID!;
+const client_secret = process.env.CLIENT_SECRET!;
 
 interface types {
   email: string;
@@ -20,25 +16,26 @@ interface types {
 passport.use(
   new GoogleStrategy(
     {
-    //   clientID: client_id,
-    clientID:client_id,
+      //   clientID: client_id,
+      clientID: client_id,
       clientSecret: client_secret,
       callbackURL: "http://localhost:3000/auth/google/callback",
       passReqToCallback: true,
-    } ,
+    },
 
-    
-    
-
-    async function (request: any, accessToken: any, refreshToken: any, profile: types, done: (arg0: { id: string; name: string; email: string; password: string | null; }) => any) {
-      
-
+    async function (
+      request: any,
+      accessToken: any,
+      refreshToken: any,
+      profile: types,
+      done: (arg0: {
+        id: string;
+        name: string;
+        email: string;
+        password: string | null;
+      }) => any
+    ) {
       const { email, given_name }: types = profile;
-
-      
-      
-      
-      
 
       const upsertUser = await prisma.user.upsert({
         where: {
@@ -52,15 +49,11 @@ passport.use(
           name: given_name,
         },
       });
+      console.log(upsertUser);
 
       return done(upsertUser);
     }
-  ), 
-
-  
+  )
 );
 
-
-
-
-module.exports = passport;
+export default passport;

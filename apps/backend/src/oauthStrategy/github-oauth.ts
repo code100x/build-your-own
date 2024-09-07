@@ -1,56 +1,45 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@repo/db";
 import passport from "passport";
-const GithubStrategy = require('passport-github2').Strategy;
+import { Strategy as GithubStrategy } from "passport-github2";
 
-const prisma = new PrismaClient();
+const git_client_id = process.env.GIT_CLIENT_ID!;
+const git_client_secret = process.env.GIT_CLIENT_SECRET!;
 
-interface types {
-    email: string;
-    given_name: string;
-    name: string;
-}
+passport.use(
+  new GithubStrategy(
+    {
+      clientID: git_client_id,
+      clientSecret: git_client_secret,
+      callbackURL: "http://localhost:3000/auth/github/callback",
+    },
+    async (accessToken: any, refreshToken: string, profile: any, done: any) => {
+      const name = profile.displayName || profile.username || "No Name";
+      const user = await prisma.user.upsert({
+        where: { email: "" },
+        update: { name: name },
+        create: {
+          email: "",
+          name: name,
+        },
+      });
+      console.log(user);
 
-const git_client_id = process.env.GIT_CLIENT_ID;
-const git_client_secret = process.env.GIT_CLIENT_SECRET;
-
-
-passport.use(new GithubStrategy({
-    clientID: git_client_id,
-    clientSecret: git_client_secret,
-    callbackURL: "http://localhost:3000/auth/github/callback",
-  },
-  async (accessToken:any,refreshToken: string, profile: any, done: any) => {
-
-const name = profile.displayName || profile.username || "No Name";
-const user=await prisma.user.upsert({
-    where:{email:""},
-    update:{name:name},
-    create:{
-        email:"",
-        name:name,
-        
+      return done(null, profile);
     }
-    
-})
-console.log(profile);
+  )
+);
 
+passport.serializeUser(function (user: any, done: any) {
+  done(null, user.id); // Serialize user by ID
+});
 
-
-    return done(null,profile)
+passport.deserializeUser(async function (id: any, done: any) {
+  try {
+    const user = await prisma.user.findUnique({ where: { id: id } });
+    done(null, user);
+  } catch (error) {
+    done(error, null);
   }
-));
-
-passport.serializeUser(function(user: any, done: any) {
-    done(null, user.id);  // Serialize user by ID
 });
 
-passport.deserializeUser(async function(id: any, done: any) {
-    try {
-        const user = await prisma.user.findUnique({ where: { id: id } });
-        done(null, user);
-    } catch (error) {
-        done(error, null);
-    }
-});
-
-module.exports = passport;
+export default passport;
