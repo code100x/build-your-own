@@ -8,6 +8,12 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,md,mdx,css}": [
+      "npx prettier --write",
+      "eslint --fix"
+    ]
+  },
   "devDependencies": {
     "husky": "^8.0.0",
     "prettier": "^3.2.5",
