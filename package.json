@@ -5,13 +5,13 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "prettier --write \"**/*.{ts,tsx, js, jsx, md, mdx, css}\"",
     "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,md,mdx,css}": [
-      "npx prettier --write",
-      "eslint --fix"
+      "npm run format",
+      "npm run lint"
     ]
   },
   "devDependencies": {
