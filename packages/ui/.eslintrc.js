@@ -10,4 +10,8 @@ module.exports = {
   rules: {
     "no-redeclare": "off",
   },
+  ignorePatterns: [
+    "postcss.config.js",
+    "tailwind.config.ts"
+  ]
 };
