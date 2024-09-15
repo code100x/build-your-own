@@ -5,9 +5,17 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx, js, jsx, md, mdx, css}\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,md,mdx,css}": [
+      "npm run format",
+      "npm run lint"
+    ]
   },
   "devDependencies": {
+    "husky": "^8.0.0",
     "prettier": "^3.2.5",
     "turbo": "^2.1.1",
     "typescript": "^5.4.5"
