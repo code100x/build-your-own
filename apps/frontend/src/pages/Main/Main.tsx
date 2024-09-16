@@ -1,6 +1,6 @@
 import { Button } from "@repo/ui";
 import { useBookStore } from "@/store/booksStore";
-import ProfileDropdown from "../ProfileDropDown";
+import ProfileDropdown from "../../components/ProfileDropDown";
 
 const Main = () => {
   const amount = useBookStore((state) => state.amount);

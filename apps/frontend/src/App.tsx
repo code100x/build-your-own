@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Main from "./components/Main/Main";
+import Main from "./pages/Main/Main";
 import Login from "./auth/login";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
           <Route element={<Main />} path="/main" />
           <Route element={<Login />} path="/login" />
 
-          <Route element={<Navigate to="/login"/>} path="*" />
+          <Route element={<Navigate to="/login" />} path="*" />
         </Routes>
       </BrowserRouter>
     </>
