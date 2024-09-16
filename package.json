@@ -6,7 +6,9 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx, js, jsx, md, mdx, css}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev:docker": "npm run prisma:docker && npm run dev",
+    "prisma:docker": "cd packages/db && npx prisma migrate dev --skip-seed"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx,md,mdx,css}": [
